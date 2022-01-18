@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32106.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectMVC-FoxIT", "ProjectMVC-FoxIT.csproj", "{8139AD6A-8653-4A8E-B355-C39958E74C11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8139AD6A-8653-4A8E-B355-C39958E74C11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8139AD6A-8653-4A8E-B355-C39958E74C11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8139AD6A-8653-4A8E-B355-C39958E74C11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8139AD6A-8653-4A8E-B355-C39958E74C11}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CA74A7D8-F218-47AC-9C7F-CD31D50674C2}
+	EndGlobalSection
+EndGlobal
