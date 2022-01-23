@@ -78,6 +78,9 @@ namespace ProjectMVC_FoxIT.Controllers
             {
                 return NotFound();
             }
+            ViewData["Name"] = new SelectList(_context.Customers, "Name", "Name");
+            ViewData["Address"] = new SelectList(_context.Customers, "Address", "Address");
+            ViewData["Edb"] = new SelectList(_context.Customers, "Edb", "Edb");
             return View(customer);
         }
 
@@ -113,6 +116,10 @@ namespace ProjectMVC_FoxIT.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Name"] = new SelectList(_context.Customers, "Name", "Name", customer.CustomerId);
+            ViewData["Address"] = new SelectList(_context.Customers, "Address", "Address", customer.CustomerId);
+            ViewData["Edb"] = new SelectList(_context.Customers, "Edb", "Edb", customer.Edb);
+            //ViewBag.groupdata = new Customer().Name();
             return View(customer);
         }
 

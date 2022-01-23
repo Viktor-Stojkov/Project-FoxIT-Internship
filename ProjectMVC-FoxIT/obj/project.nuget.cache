@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "LRoYdYNMAXL9Q1kN+qdKENvIriF1EvtrFy0RKpLQ4RW3GDIBFX7gE5Hql7Vy3CUYwCxMiKe3woiUIoOvB0kLaw==",
+  "dgSpecHash": "FadIr/ZquCOrQTeLtAD+8NVRy8YY8QMDNYPKkqDkTzEX9gX4oylcpSsvbSju6P3SPHGjbwC7bZi2WSlhQmRqnQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\vices\\Desktop\\Viktor Folder\\03. FoxIT - Intership Full Stack .NET Developer\\Classes\\FoxIT - GitHub Project\\WorkOrders-V.S\\ProjectMVC-FoxIT\\ProjectMVC-FoxIT.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\vices\\.nuget\\packages\\fontawesome\\4.7.0\\fontawesome.4.7.0.nupkg.sha512",
     "C:\\Users\\vices\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\vices\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.13\\microsoft.aspnetcore.cryptography.internal.5.0.13.nupkg.sha512",
     "C:\\Users\\vices\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.13\\microsoft.aspnetcore.cryptography.keyderivation.5.0.13.nupkg.sha512",

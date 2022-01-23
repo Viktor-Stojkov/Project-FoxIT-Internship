@@ -51,6 +51,7 @@ namespace ProjectMVC_FoxIT.Controllers
         {
             ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId");
             ViewData["ProjectId"] = new SelectList(_context.Projects, "ProjectId", "ProjectId");
+            ViewData["UserId"] = new SelectList(_context.WorkOrders, "UserId", "UserId");
             return View();
         }
 
@@ -69,6 +70,7 @@ namespace ProjectMVC_FoxIT.Controllers
             }
             ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId", workOrder.CustomerId);
             ViewData["ProjectId"] = new SelectList(_context.Projects, "ProjectId", "ProjectId", workOrder.ProjectId);
+            ViewData["UserId"] = new SelectList(_context.WorkOrders, "UserId", "UserId", workOrder.UserId);
             return View(workOrder);
         }
 
@@ -87,6 +89,11 @@ namespace ProjectMVC_FoxIT.Controllers
             }
             ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId", workOrder.CustomerId);
             ViewData["ProjectId"] = new SelectList(_context.Projects, "ProjectId", "ProjectId", workOrder.ProjectId);
+            ViewData["UserId"] = new SelectList(_context.WorkOrders, "UserId", "UserId");
+            ViewData["CustomerNote"] = new SelectList(_context.WorkOrders, "CustomerNote", "CustomerNote");
+            ViewData["PerformedWorks"] = new SelectList(_context.WorkOrders, "PerformedWorks", "PerformedWorks");
+            ViewData["CreatedOn"] = new SelectList(_context.WorkOrders, "CreatedOn", "CreatedOn");
+            ViewData["UpdatedOn"] = new SelectList(_context.WorkOrders, "UpdatedOn", "UpdatedOn");
             return View(workOrder);
         }
 
@@ -124,6 +131,11 @@ namespace ProjectMVC_FoxIT.Controllers
             }
             ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId", workOrder.CustomerId);
             ViewData["ProjectId"] = new SelectList(_context.Projects, "ProjectId", "ProjectId", workOrder.ProjectId);
+            ViewData["UserId"] = new SelectList(_context.WorkOrders, "UserId", "UserId", workOrder.UserId);
+            ViewData["CustomerNote"] = new SelectList(_context.WorkOrders, "CustomerNote", "CustomerNote", workOrder.CustomerNote);
+            ViewData["PerformedWorks"] = new SelectList(_context.WorkOrders, "PerformedWorks", "PerformedWorks", workOrder.PerformedWorks);
+            ViewData["CreatedOn"] = new SelectList(_context.WorkOrders, "CreatedOn", "CreatedOn", workOrder.CreatedOn);
+            ViewData["UpdatedOn"] = new SelectList(_context.WorkOrders, "UpdatedOn", "UpdatedOn", workOrder.UpdatedOn);
             return View(workOrder);
         }
 

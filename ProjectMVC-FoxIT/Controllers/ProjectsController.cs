@@ -49,6 +49,7 @@ namespace ProjectMVC_FoxIT.Controllers
         public IActionResult Create()
         {
             ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId");
+            
             return View();
         }
 
@@ -66,6 +67,8 @@ namespace ProjectMVC_FoxIT.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId", project.CustomerId);
+
+
             return View(project);
         }
 
@@ -83,6 +86,7 @@ namespace ProjectMVC_FoxIT.Controllers
                 return NotFound();
             }
             ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId", project.CustomerId);
+            ViewData["Name"] = new SelectList(_context.Projects, "Name", "Name");
             return View(project);
         }
 
@@ -119,6 +123,7 @@ namespace ProjectMVC_FoxIT.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId", project.CustomerId);
+            ViewData["Name"] = new SelectList(_context.Projects, "Name", "Name", project.Name);
             return View(project);
         }
 

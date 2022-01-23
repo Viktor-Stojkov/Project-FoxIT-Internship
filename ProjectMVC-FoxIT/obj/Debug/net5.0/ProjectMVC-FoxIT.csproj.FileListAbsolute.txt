@@ -172,3 +172,4 @@ C:\Users\vices\Desktop\Viktor Folder\03. FoxIT - Intership Full Stack .NET Devel
 C:\Users\vices\Desktop\Viktor Folder\03. FoxIT - Intership Full Stack .NET Developer\Classes\FoxIT - GitHub Project\WorkOrders-V.S\ProjectMVC-FoxIT\obj\Debug\net5.0\Razor\Views\WorkOrders\Details.cshtml.g.cs
 C:\Users\vices\Desktop\Viktor Folder\03. FoxIT - Intership Full Stack .NET Developer\Classes\FoxIT - GitHub Project\WorkOrders-V.S\ProjectMVC-FoxIT\obj\Debug\net5.0\Razor\Views\WorkOrders\Edit.cshtml.g.cs
 C:\Users\vices\Desktop\Viktor Folder\03. FoxIT - Intership Full Stack .NET Developer\Classes\FoxIT - GitHub Project\WorkOrders-V.S\ProjectMVC-FoxIT\obj\Debug\net5.0\Razor\Views\WorkOrders\Index.cshtml.g.cs
+C:\Users\vices\Desktop\Viktor Folder\03. FoxIT - Intership Full Stack .NET Developer\Classes\FoxIT - GitHub Project\WorkOrders-V.S\ProjectMVC-FoxIT\bin\Debug\net5.0\libman.json

@@ -25,7 +25,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="UserId" class="control-label"></label>
-                <input asp-for="UserId" class="form-control" />
+                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
                 <span asp-validation-for="UserId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -35,12 +35,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="CustomerNote" class="control-label"></label>
-                <input asp-for="CustomerNote" class="form-control" />
+                <select asp-for="CustomerNote" class="form-control" asp-items="ViewBag.CustomerNote"></select>
                 <span asp-validation-for="CustomerNote" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PerformedWorks" class="control-label"></label>
-                <input asp-for="PerformedWorks" class="form-control" />
+                <select asp-for="PerformedWorks" class="form-control" asp-items="ViewBag.PerformedWorks"></select>
                 <span asp-validation-for="PerformedWorks" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -55,7 +55,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="IsActive" class="control-label"></label>
-                <input asp-for="IsActive" class="form-control" />
+                @Html.EditorFor(model => model.IsActive, new {@class = "form-control"})  @*bool prop IsActive now edtable*@
                 <span asp-validation-for="IsActive" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -65,7 +65,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="CreatedOn" class="control-label"></label>
-                <input asp-for="CreatedOn" class="form-control" />
+                <select asp-for="CreatedOn" class="form-control" asp-items="ViewBag.CreatedOn"></select>
                 <span asp-validation-for="CreatedOn" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -75,18 +75,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="UpdatedOn" class="control-label"></label>
-                <input asp-for="UpdatedOn" class="form-control" />
+                <select asp-for="UpdatedOn" class="form-control" asp-items="ViewBag.UpdatedOn"></select>
                 <span asp-validation-for="UpdatedOn" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
 </div>
 
 @section Scripts {
