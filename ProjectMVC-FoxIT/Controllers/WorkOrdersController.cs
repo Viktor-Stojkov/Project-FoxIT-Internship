@@ -64,6 +64,10 @@ namespace ProjectMVC_FoxIT.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                workOrder.CreatedOn = DateTime.Now; // Set the Created Data on Current Time, handdled on Backend side
+                workOrder.CreatedBy = User?.Identity != null ? User.Identity.Name : ""; // User != null && User.Identity != null ? 
+
                 _context.Add(workOrder);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -82,18 +86,24 @@ namespace ProjectMVC_FoxIT.Controllers
                 return NotFound();
             }
 
-            var workOrder = await _context.WorkOrders.FindAsync(id);
+            var workOrder = await _context.WorkOrders
+                .Include(x => x.Customer)
+                .Include(x => x.Project)
+                .FirstOrDefaultAsync(x => x.WorkOrderId == id);
             if (workOrder == null)
             {
                 return NotFound();
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId", workOrder.CustomerId);
-            ViewData["ProjectId"] = new SelectList(_context.Projects, "ProjectId", "ProjectId", workOrder.ProjectId);
-            ViewData["UserId"] = new SelectList(_context.WorkOrders, "UserId", "UserId");
+
+            var workOrderUser = _context.AspNetUsers.SingleOrDefault(x => x.Id == workOrder.UserId);
+
+            ViewData["selectListCustomerName"] = new SelectList(_context.Customers, "Name", "Name", workOrder.Customer.Name);
+            ViewData["selectListProjectName"] = new SelectList(_context.Projects, "Name", "Name", workOrder.Project.Name);
+            ViewData["selectListProjectUserName"] = new SelectList(_context.AspNetUsers, "UserName", "Id", workOrderUser?.UserName);
             ViewData["CustomerNote"] = new SelectList(_context.WorkOrders, "CustomerNote", "CustomerNote");
             ViewData["PerformedWorks"] = new SelectList(_context.WorkOrders, "PerformedWorks", "PerformedWorks");
-            ViewData["CreatedOn"] = new SelectList(_context.WorkOrders, "CreatedOn", "CreatedOn");
-            ViewData["UpdatedOn"] = new SelectList(_context.WorkOrders, "UpdatedOn", "UpdatedOn");
+            ViewData["CreatedOn"] = new SelectList(_context.WorkOrders, "CreatedOn", "CreatedOn", workOrder.CreatedOn);
+            ViewData["UpdatedOn"] = new SelectList(_context.WorkOrders, "UpdatedOn", "UpdatedOn", workOrder.UpdatedOn);
             return View(workOrder);
         }
 
@@ -108,6 +118,9 @@ namespace ProjectMVC_FoxIT.Controllers
             {
                 return NotFound();
             }
+
+            workOrder.CreatedOn = DateTime.Now; 
+            workOrder.CreatedBy = User?.Identity != null ? User.Identity.Name : ""; 
 
             if (ModelState.IsValid)
             {
@@ -129,11 +142,14 @@ namespace ProjectMVC_FoxIT.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId", workOrder.CustomerId);
-            ViewData["ProjectId"] = new SelectList(_context.Projects, "ProjectId", "ProjectId", workOrder.ProjectId);
-            ViewData["UserId"] = new SelectList(_context.WorkOrders, "UserId", "UserId", workOrder.UserId);
-            ViewData["CustomerNote"] = new SelectList(_context.WorkOrders, "CustomerNote", "CustomerNote", workOrder.CustomerNote);
-            ViewData["PerformedWorks"] = new SelectList(_context.WorkOrders, "PerformedWorks", "PerformedWorks", workOrder.PerformedWorks);
+
+            var workOrderUser = _context.AspNetUsers.SingleOrDefault(x => x.Id == workOrder.UserId);
+
+            ViewData["selectListCustomerName"] = new SelectList(_context.Customers, "Name", "Name", workOrder.Customer.Name);
+            ViewData["selectListProjectName"] = new SelectList(_context.Projects, "Name", "Name", workOrder.Project.Name);
+            ViewData["selectListProjectUserName"] = new SelectList(_context.AspNetUsers, "UserName", "UserName", workOrderUser?.UserName);
+            ViewData["CustomerNote"] = new SelectList(_context.WorkOrders, "CustomerNote", "CustomerNote");
+            ViewData["PerformedWorks"] = new SelectList(_context.WorkOrders, "PerformedWorks", "PerformedWorks");
             ViewData["CreatedOn"] = new SelectList(_context.WorkOrders, "CreatedOn", "CreatedOn", workOrder.CreatedOn);
             ViewData["UpdatedOn"] = new SelectList(_context.WorkOrders, "UpdatedOn", "UpdatedOn", workOrder.UpdatedOn);
             return View(workOrder);

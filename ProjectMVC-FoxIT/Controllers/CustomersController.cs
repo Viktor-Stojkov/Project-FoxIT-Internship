@@ -58,6 +58,9 @@ namespace ProjectMVC_FoxIT.Controllers
         {
             if (ModelState.IsValid)
             {
+                customer.CreatedOn = DateTime.Now; // Set the Created Data on Current Time, handdled on Backend side
+                customer.CreatedBy = User?.Identity != null ? User.Identity.Name : ""; // User != null && User.Identity != null ? 
+
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -78,9 +81,10 @@ namespace ProjectMVC_FoxIT.Controllers
             {
                 return NotFound();
             }
-            ViewData["Name"] = new SelectList(_context.Customers, "Name", "Name");
-            ViewData["Address"] = new SelectList(_context.Customers, "Address", "Address");
-            ViewData["Edb"] = new SelectList(_context.Customers, "Edb", "Edb");
+
+            ViewData["CustomersListName"] = new SelectList(_context.Customers, "Name", "Name", customer.Name);
+            ViewData["CustomerListAddress"] = new SelectList(_context.Customers, "Address", "Address", customer.Address);
+            ViewData["CustomerListEdb"] = new SelectList(_context.Customers, "Edb", "Edb", customer.Edb);
             return View(customer);
         }
 
@@ -100,6 +104,9 @@ namespace ProjectMVC_FoxIT.Controllers
             {
                 try
                 {
+                    customer.UpdatedOn = DateTime.Now;
+                    customer.UpdatedBy = User?.Identity != null ? User.Identity.Name : "";
+
                     _context.Update(customer);
                     await _context.SaveChangesAsync();
                 }
@@ -116,10 +123,9 @@ namespace ProjectMVC_FoxIT.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Name"] = new SelectList(_context.Customers, "Name", "Name", customer.CustomerId);
-            ViewData["Address"] = new SelectList(_context.Customers, "Address", "Address", customer.CustomerId);
-            ViewData["Edb"] = new SelectList(_context.Customers, "Edb", "Edb", customer.Edb);
-            //ViewBag.groupdata = new Customer().Name();
+            ViewData["CustomersListName"] = new SelectList(_context.Customers, "Name", "Name", customer.Name);
+            ViewData["CustomerListAddress"] = new SelectList(_context.Customers, "Address", "Address", customer.Address);
+            ViewData["CustomerListEdb"] = new SelectList(_context.Customers, "Edb", "Edb", customer.Edb);
             return View(customer);
         }
 

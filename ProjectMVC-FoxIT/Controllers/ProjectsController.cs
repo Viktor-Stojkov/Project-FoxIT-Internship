@@ -48,6 +48,7 @@ namespace ProjectMVC_FoxIT.Controllers
         // GET: Projects/Create
         public IActionResult Create()
         {
+
             ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId");
             
             return View();
@@ -62,6 +63,9 @@ namespace ProjectMVC_FoxIT.Controllers
         {
             if (ModelState.IsValid)
             {
+                project.CreatedOn = DateTime.Now; // Set the Created Data on Current Time, handdled on Backend side
+                project.CreatedBy = User?.Identity != null ? User.Identity.Name : ""; // User != null && User.Identity != null ? 
+
                 _context.Add(project);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -80,13 +84,16 @@ namespace ProjectMVC_FoxIT.Controllers
                 return NotFound();
             }
 
-            var project = await _context.Projects.FindAsync(id);
+            var project = await _context.Projects
+                .Include(x => x.Customer)
+                .FirstOrDefaultAsync(x => x.ProjectId == id);
+
             if (project == null)
             {
                 return NotFound();
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId", project.CustomerId);
-            ViewData["Name"] = new SelectList(_context.Projects, "Name", "Name");
+            ViewData["SelectListName"] = new SelectList(_context.Projects, "Name", "Name", project.Name);
+            ViewData["SelectListCustomerName"] = new SelectList(_context.Customers, "Name", "Name", project.Customer.Name);
             return View(project);
         }
 
@@ -106,6 +113,9 @@ namespace ProjectMVC_FoxIT.Controllers
             {
                 try
                 {
+                    project.UpdatedOn = DateTime.Now;
+                    project.UpdatedBy = User?.Identity != null ? User.Identity.Name : "";
+
                     _context.Update(project);
                     await _context.SaveChangesAsync();
                 }
@@ -122,8 +132,8 @@ namespace ProjectMVC_FoxIT.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId", project.CustomerId);
-            ViewData["Name"] = new SelectList(_context.Projects, "Name", "Name", project.Name);
+            ViewData["SelectListName"] = new SelectList(_context.Projects, "Name", "Name", project.Name);
+            ViewData["SelectListCustomerName"] = new SelectList(_context.Customers, "Name", "Name", project.Customer.Name);
             return View(project);
         }
 

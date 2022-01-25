@@ -10,22 +10,31 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" method="post" autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CustomerId" />
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
-                <select asp-for="Name" class="form-control" asp-items="ViewBag.Name"></select>
-                @*<ejs-autocomplete showPopupButton="true" dataSource="@ViewBag.groupdata">
-                    <e-autocomplete-fields groupBy="Name"></e-autocomplete-fields>
-                </ejs-autocomplete>*@
+                <input type="text" asp-for="Name" autocomplete="off" placeholder="Customer name" list="CustomersListName">
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
+            <datalist id="CustomersListName">
+                @foreach (var customer in ViewData["CustomersListName"] as SelectList)
+                {
+                    <option value="@customer.Value"/>
+                }
+            </datalist>
             <div class="form-group">
                 <label asp-for="Address" class="control-label"></label>
-                <select asp-for="Address" class="form-control" asp-items="ViewBag.Address"></select>
+                <input type="text" asp-for="Address" autocomplete="off" placeholder="Address" list="CustomerListAddress">
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
+            <datalist id="CustomerListAddress">
+                @foreach (var customer in ViewData["CustomerListAddress"] as SelectList)
+                {
+                    <option value="@customer.Value"/>
+                }
+            </datalist>
             <div class="form-group">
                 <label asp-for="City" class="control-label"></label>
                 <input asp-for="City" class="form-control" />
@@ -48,15 +57,21 @@
             </div>
             <div class="form-group">
                 <label asp-for="Edb" class="control-label"></label>
-                <select asp-for="Edb" class="form-control" asp-items="ViewBag.Edb"></select>
+                <input type="text" asp-for="Edb" autocomplete="off" placeholder="Edb" list="CustomerListEdb"> 
                 <span asp-validation-for="Edb" class="text-danger"></span>
             </div>
+            <datalist id="CustomerListEdb">
+                @foreach (var customer in ViewData["CustomerListEdb"] as SelectList)
+                {
+                    <option value="@customer.Value"/>
+                }
+            </datalist>
             <div class="form-group">
                 <label asp-for="IsActive" class="control-label"></label>
                 @Html.EditorFor(model => model.IsActive, new { @class = "form-control" })  @*bool prop IsActive now edtable*@
                 <span asp-validation-for="IsActive" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="CreatedBy" class="control-label"></label>
                 <input asp-for="CreatedBy" class="form-control" />
                 <span asp-validation-for="CreatedBy" class="text-danger"></span>
@@ -75,7 +90,7 @@
                 <label asp-for="UpdatedOn" class="control-label"></label>
                 <input asp-for="UpdatedOn" class="form-control" />
                 <span asp-validation-for="UpdatedOn" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-success" />
             </div>

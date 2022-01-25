@@ -14,20 +14,38 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="WorkOrderId" />
             <div class="form-group">
-                <label asp-for="CustomerId" class="control-label"></label>
-                <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.CustomerId"></select>
-                <span asp-validation-for="CustomerId" class="text-danger"></span>
+                <label asp-for="Customer.Name" class="control-label"></label>
+                <input type="text" asp-for="Customer.Name" autocomplete="off" placeholder="Customer Name" list="selectListCustomerName" />
+                <span asp-validation-for="Customer.Name" class="text-danger"></span>
             </div>
+            <datalist id="selectListCustomerName">
+                @foreach (var workOrderInCustomer in ViewData["selectListCustomerName"] as SelectList)
+                {
+                    <option value="@workOrderInCustomer.Value" />
+                }
+            </datalist>
             <div class="form-group">
-                <label asp-for="ProjectId" class="control-label"></label>
-                <select asp-for="ProjectId" class="form-control" asp-items="ViewBag.ProjectId"></select>
-                <span asp-validation-for="ProjectId" class="text-danger"></span>
+                <label asp-for="Project.Name" class="control-label"></label>
+                <input type="text" asp-for="Project.Name" autocomplete="off" placeholder="Project Name" list="selectListProjectName" />
+                <span asp-validation-for="Project.Name" class="text-danger"></span>
             </div>
+            <datalist id="selectListProjectName">
+                @foreach (var workOrderInProject in ViewData["selectListProjectName"] as SelectList)
+                {
+                    <option value="@workOrderInProject.Value" />
+                }
+            </datalist>
             <div class="form-group">
                 <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                <input type="text" asp-for="UserId" autocomplete="off" placeholder="Project Name" list="selectListProjectUserName" />
                 <span asp-validation-for="UserId" class="text-danger"></span>
             </div>
+            <datalist id="selectListProjectUserName">
+                @foreach (var workOrderInAspNetUser in ViewData["selectListProjectUserName"] as SelectList)
+                {
+                    <option value="@workOrderInAspNetUser.Value" />
+                }
+            </datalist>
             <div class="form-group">
                 <label asp-for="Date" class="control-label"></label>
                 <input asp-for="Date" class="form-control" />
@@ -55,24 +73,24 @@
             </div>
             <div class="form-group">
                 <label asp-for="IsActive" class="control-label"></label>
-                @Html.EditorFor(model => model.IsActive, new {@class = "form-control"})  @*bool prop IsActive now edtable*@
+                @Html.EditorFor(model => model.IsActive, new { @class = "form-control" })  @*bool prop IsActive now edtable*@
                 <span asp-validation-for="IsActive" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="CreatedBy" class="control-label"></label>
                 <input asp-for="CreatedBy" class="form-control" />
                 <span asp-validation-for="CreatedBy" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="CreatedOn" class="control-label"></label>
                 <select asp-for="CreatedOn" class="form-control" asp-items="ViewBag.CreatedOn"></select>
                 <span asp-validation-for="CreatedOn" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="UpdatedBy" class="control-label"></label>
                 <input asp-for="UpdatedBy" class="form-control" />
                 <span asp-validation-for="UpdatedBy" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="UpdatedOn" class="control-label"></label>
                 <select asp-for="UpdatedOn" class="form-control" asp-items="ViewBag.UpdatedOn"></select>
