@@ -13,6 +13,7 @@ namespace ProjectMVC_FoxIT.Models
             WorkOrders = new HashSet<WorkOrder>();
         }
 
+
         public int ProjectId { get; set; }
         
         [Required]
