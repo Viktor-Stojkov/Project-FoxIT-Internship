@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -13,6 +14,8 @@ namespace ProjectMVC_FoxIT.Models
         }
 
         public int ProjectId { get; set; }
+        
+        [Required]
         public string Name { get; set; }
         public int CustomerId { get; set; }
         public bool? IsActive { get; set; }
