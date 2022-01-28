@@ -23,7 +23,7 @@ namespace ProjectMVC_FoxIT.Controllers
         public async Task<IActionResult> Index()
         {
             var workOrdersContext = _context.Projects.Include(p => p.Customer);
-            return View(await workOrdersContext.ToListAsync());
+                return View(await workOrdersContext.ToListAsync());
         }
 
         // GET: Projects/Details/5
@@ -50,7 +50,7 @@ namespace ProjectMVC_FoxIT.Controllers
         {
 
             ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerId");
-            
+
             return View();
         }
 
