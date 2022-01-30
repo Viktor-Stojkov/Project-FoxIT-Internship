@@ -2,27 +2,58 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjectMVC_FoxIT.Data;
 using ProjectMVC_FoxIT.Models;
+using ProjectMVC_FoxIT.Models.VIewModel;
 
 namespace ProjectMVC_FoxIT.Controllers
 {
     public class CustomersController : Controller
     {
         private readonly WorkOrdersContext _context;
+        private readonly IMapper _mapper;
 
-        public CustomersController(WorkOrdersContext context)
+        public CustomersController(WorkOrdersContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: Customers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(CustomerViewModel filter)
         {
-            return View(await _context.Customers.ToListAsync());
+
+            CustomerViewModel model = new CustomerViewModel();
+            var customerList = await _context.Customers.ToListAsync();
+
+            if (filter != null)
+            {
+                if (!String.IsNullOrEmpty(filter.Name))
+                {
+                    customerList = customerList.Where(x => x.Name == filter.Name).ToList();
+                }
+                if (!String.IsNullOrEmpty(filter.Address))
+                {
+                    customerList = customerList.Where(x => x.Address == filter.Address).ToList();
+                }
+                if (!String.IsNullOrEmpty(filter.Edb))
+                {
+                    customerList = customerList.Where(x => x.Edb== filter.Edb).ToList();
+                }
+            }
+
+            model.CustomerNames = new SelectList(_context.Customers, "Name", "Name");
+            model.CustomerAddress = new SelectList(_context.Customers, "Address", "Address");
+            model.CustomerEdbs = new SelectList(_context.Customers, "Edb", "Edb");
+
+            List<CustomerViewModel> customerViewModels = _mapper.Map<List<Customer>, List<CustomerViewModel>>(customerList);
+            model.Customers = customerViewModels;
+
+            return View(model);
         }
 
         // GET: Customers/Details/5

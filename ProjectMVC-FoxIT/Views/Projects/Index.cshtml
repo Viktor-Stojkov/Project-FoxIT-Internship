@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ProjectMVC_FoxIT.Models.Project>
+﻿@model ProjectMVC_FoxIT.Models.VIewModel.ProjectViewModel
+@*@model IEnumerable<ProjectMVC_FoxIT.Models.Project>*@
 
 @{
     ViewData["Title"] = "Index";
@@ -9,6 +10,41 @@
 <p>
     <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
+
+<form asp-action="Index" method="post">
+    <div class="row">
+        <div class="form-group col-3">
+            <label class="control-label">Projects</label>
+            <br />
+            <input type="text" asp-for="Name" autocomplete="off" placeholder="-- Select --" list="selectListProjectsName" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <datalist id="selectListProjectsName">
+            @foreach (var projectInProjects in Model.ProjectNames)
+            {
+                <option value="@projectInProjects.Value" />
+            }
+        </datalist>
+
+        <div class="form-group col-3">
+            <label class="control-label">Customers</label>
+            <br />
+            <input asp-for="Customer.Name" autocomplete="off" placeholder="-- Select --" list="selectListCustomerName" />
+            <span asp-validation-for="Customer.Name" class="text-danger"></span>
+        </div>
+        <datalist id="selectListCustomerName">
+            @foreach (var projectInCustomer in Model.Customers)
+            {
+                <option value="@projectInCustomer.Value" />
+            }
+        </datalist>
+
+        <div class="form-group col-3">
+            <input type="submit" class="btn btn-primary" value="Search" />  @*Search button*@
+        </div>
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>
@@ -37,35 +73,36 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedOn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedOn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Customer.CustomerId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProjectId" class="btn btn-warning">Edit</a>
-                <a asp-action="Details" asp-route-id="@item.ProjectId" class="btn btn-info">Details</a>
-                <a asp-action="Delete" asp-route-id="@item.ProjectId" class="btn btn-danger">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Projects)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedOn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedOn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.CustomerId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProjectId" class="btn btn-warning">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.ProjectId" class="btn btn-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.ProjectId" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

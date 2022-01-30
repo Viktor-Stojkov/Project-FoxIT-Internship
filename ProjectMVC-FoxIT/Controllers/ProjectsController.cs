@@ -2,28 +2,50 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjectMVC_FoxIT.Data;
 using ProjectMVC_FoxIT.Models;
+using ProjectMVC_FoxIT.Models.VIewModel;
 
 namespace ProjectMVC_FoxIT.Controllers
 {
     public class ProjectsController : Controller
     {
         private readonly WorkOrdersContext _context;
+        private readonly IMapper _mapper;
 
-        public ProjectsController(WorkOrdersContext context)
+        public ProjectsController(WorkOrdersContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: Projects
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(ProjectViewModel filter)
         {
-            var workOrdersContext = _context.Projects.Include(p => p.Customer);
-                return View(await workOrdersContext.ToListAsync());
+            ProjectViewModel model = new ProjectViewModel();
+            var projectsList = await _context.Projects.Include(p => p.Customer).ToListAsync();
+            if (filter != null)
+            {
+                if (!String.IsNullOrEmpty(filter.Name))
+                {
+                    projectsList = projectsList.Where(x => x.Name == filter.Name).ToList();
+                }
+                if (filter.Customer != null && !String.IsNullOrEmpty(filter.Customer.Name))
+                {
+                    projectsList = projectsList.Where(x => x.Customer.Name == filter.Customer.Name).ToList();
+                }
+            }
+
+            model.ProjectNames = new SelectList(_context.Projects, "Name", "Name");
+            model.Customers = new SelectList(_context.Customers, "Name", "Name");
+            List<ProjectViewModel> projectViewModels = _mapper.Map<List<Project>, List<ProjectViewModel>>(projectsList);
+
+            model.Projects = projectViewModels;
+            return View(model);
         }
 
         // GET: Projects/Details/5

@@ -8,10 +8,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProjectMVC_FoxIT.Data;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ProjectMVC_FoxIT.Mappers;
 
 namespace ProjectMVC_FoxIT
 {
@@ -33,6 +35,14 @@ namespace ProjectMVC_FoxIT
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<WorkOrdersContext>();  // Changed AplicationDbContext
+            //services.AddAutoMapper(typeof(Startup));
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+             });
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
+            /* https://stackoverflow.com/questions/40275195/how-to-set-up-automapper-in-asp-net-core */
             services.AddControllersWithViews();
         }
 
@@ -62,7 +72,7 @@ namespace ProjectMVC_FoxIT
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=WorkOrders}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

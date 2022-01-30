@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ProjectMVC_FoxIT.Models.WorkOrder>
+﻿@model ProjectMVC_FoxIT.Models.VIewModel.WorkOrdersViewModel
+@*@model IEnumerable<ProjectMVC_FoxIT.Models.WorkOrder>*@
 
 @{
     ViewData["Title"] = "Index";
@@ -9,6 +10,79 @@
 <p>
     <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
+
+<form asp-action="Index" method="post">
+    <div class="row">
+        <div class="form-group col-3">
+            <label class="control-label">Customers</label>
+            <br />
+            <input type="text" asp-for="Customer.Name" autocomplete="off" placeholder="-- Select --" list="selectListCustomersName" />
+            <span asp-validation-for="Customer.Name" class="text-danger"></span>
+        </div>
+        <datalist id="selectListCustomersName">
+            @foreach (var workOrderInCustomers in Model.Customers)
+            {
+                <option value="@workOrderInCustomers.Value" />
+            }
+        </datalist>
+
+        <div class="form-group col-3">
+            <label class="control-label">Projects</label>
+            <br />
+            <input type="text" asp-for="Project.Name" autocomplete="off" placeholder="-- Select --" list="selectListProjectsName" />
+            <span asp-validation-for="Project.Name" class="text-danger"></span>
+        </div>
+        <datalist id="selectListProjectsName">
+            @foreach (var workOrderInProjects in Model.Projects)
+            {
+                <option value="@workOrderInProjects.Value" />
+            }
+        </datalist>
+
+        <div class="form-group col-3">
+            <label class="control-label">Users</label>
+            <br />
+            <input asp-for="UserId" autocomplete="off" placeholder="-- Select --" list="selectListUsersName" />
+            <span asp-validation-for="UserId" class="text-danger"></span>
+        </div>
+        <datalist id="selectListUsersName">
+            @foreach (var workOrderInUsers in Model.Users)
+            {
+                <option value="@workOrderInUsers.Value" />
+            }
+        </datalist>
+
+        <div class="form-group col-3">
+            <label class="control-label">Customer Note</label>
+            <br />
+            <input asp-for="CustomerNote" autocomplete="off" placeholder="-- Select --" list="selectListCustomerName" />
+            <span asp-validation-for="CustomerNote" class="text-danger"></span>
+        </div>
+        <datalist id="selectListCustomerName">
+            @foreach (var workOrderInCustomerNote in Model.CustomerNotes)
+            {
+                <option value="@workOrderInCustomerNote.Value" />
+            }
+        </datalist>
+
+        <div class="form-group col-3">
+            <label class="control-label">Performed Works</label>
+            <br />
+            <input asp-for="PerformedWorks" autocomplete="off" placeholder="-- Select --" list="selectListPerformedName" />
+            <span asp-validation-for="PerformedWorks" class="text-danger"></span>
+        </div>
+        <datalist id="selectListPerformedName">
+            @foreach (var workOrderInPerformedWorks in Model.PerformedWorksModel)
+            {
+                <option value="@workOrderInPerformedWorks.Value" />
+            }
+        </datalist>
+        <div class="form-group col-3">
+            <input type="submit" class="btn btn-primary" value="Search" />  @*Search button*@
+        </div>
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>
@@ -33,18 +107,18 @@
             <th>
                 @Html.DisplayNameFor(model => model.IsActive)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.CreatedBy)
-            </th>
-            <th>
+                </th>
+                <th>
                 @Html.DisplayNameFor(model => model.CreatedOn)
-            </th>
-            <th>
+                </th>
+                <th>
                 @Html.DisplayNameFor(model => model.UpdatedBy)
-            </th>
-            <th>
+                </th>
+                <th>
                 @Html.DisplayNameFor(model => model.UpdatedOn)
-            </th>
+                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Customer)
             </th>
@@ -55,53 +129,54 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerNote)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PerformedWorks)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hours)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Minutes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedOn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedOn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Customer.CustomerId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Project.ProjectId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.WorkOrderId" class="btn btn-warning">Edit</a>
-                <a asp-action="Details" asp-route-id="@item.WorkOrderId" class="btn btn-info">Details</a>
-                <a asp-action="Delete" asp-route-id="@item.WorkOrderId" class="btn btn-danger">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.WorkOrders)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerNote)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PerformedWorks)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hours)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Minutes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedBy)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedOn)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.CustomerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Project.ProjectId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.WorkOrderId" class="btn btn-warning">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.WorkOrderId" class="btn btn-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.WorkOrderId" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

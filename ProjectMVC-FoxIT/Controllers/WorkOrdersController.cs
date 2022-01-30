@@ -2,28 +2,79 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjectMVC_FoxIT.Data;
 using ProjectMVC_FoxIT.Models;
+using ProjectMVC_FoxIT.Models.VIewModel;
 
 namespace ProjectMVC_FoxIT.Controllers
 {
     public class WorkOrdersController : Controller
     {
         private readonly WorkOrdersContext _context;
+        private readonly IMapper _mapper; //dependency injection
 
-        public WorkOrdersController(WorkOrdersContext context)
+        public WorkOrdersController(WorkOrdersContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: WorkOrders
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(WorkOrdersViewModel filter)
         {
-            var workOrdersContext = _context.WorkOrders.Include(w => w.Customer).Include(w => w.Project);
-            return View(await workOrdersContext.ToListAsync());
+            WorkOrdersViewModel model = new WorkOrdersViewModel();
+            var workOrdersContext = await _context.WorkOrders.Include(w => w.Customer).Include(w => w.Project).ToListAsync();
+            if (filter != null)
+            {
+                if (filter.Customer != null && !String.IsNullOrEmpty(filter.Customer.Name))
+                {
+                    workOrdersContext = workOrdersContext.Where(x => x.Customer.Name == filter.Customer.Name).ToList();
+                }
+                if (filter.Project != null && !String.IsNullOrEmpty(filter.Project.Name))
+                {
+                    workOrdersContext = workOrdersContext.Where(w => w.Project.Name == filter.Project.Name).ToList();
+                }
+                if (!String.IsNullOrEmpty(filter.UserId))
+                {
+                    workOrdersContext = workOrdersContext.Where(x => x.UserId == filter.UserId).ToList();
+                }
+                if (!String.IsNullOrEmpty(filter.CustomerNote))
+                {
+                    workOrdersContext = workOrdersContext.Where(x => x.CustomerNote == filter.CustomerNote).ToList();
+                }
+                if (!String.IsNullOrEmpty(filter.PerformedWorks))
+                {
+                    workOrdersContext = workOrdersContext.Where(x => x.PerformedWorks == filter.PerformedWorks).ToList();
+                }
+            }
+            List<WorkOrdersViewModel> workOrdersViewList = _mapper.Map<List<WorkOrder>, List<WorkOrdersViewModel>>(workOrdersContext); // Mapped List in WorkOrdersViewModel from WorkOrder
+            model.WorkOrders = workOrdersViewList;
+
+            model.Customers = new SelectList(_context.Customers, "Name", "Name");
+            model.Projects = new SelectList(_context.Projects, "Name", "Name");
+            model.Users = new SelectList(_context.WorkOrders.Select(x => new SelectListItem()
+            {
+                Value = x.UserId,
+                Text = x.UserId
+            }).Distinct().ToList(), "Value", "Text");
+
+            model.CustomerNotes = new SelectList(_context.WorkOrders.Select(x => new SelectListItem()
+            {
+                Value = x.CustomerNote,
+                Text = x.CustomerNote
+            }).Distinct().ToList(), "Value", "Text");
+
+            model.PerformedWorksModel = new SelectList(_context.WorkOrders.Select(x => new SelectListItem()
+            {
+                Value = x.PerformedWorks,
+                Text = x.PerformedWorks
+            }).Distinct().ToList(), "Value", "Text");
+
+            return View(model);
         }
 
         // GET: WorkOrders/Details/5
@@ -119,8 +170,8 @@ namespace ProjectMVC_FoxIT.Controllers
                 return NotFound();
             }
 
-            workOrder.CreatedOn = DateTime.Now; 
-            workOrder.CreatedBy = User?.Identity != null ? User.Identity.Name : ""; 
+            workOrder.CreatedOn = DateTime.Now;
+            workOrder.CreatedBy = User?.Identity != null ? User.Identity.Name : "";
 
             if (ModelState.IsValid)
             {

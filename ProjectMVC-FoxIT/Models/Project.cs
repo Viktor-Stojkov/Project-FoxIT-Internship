@@ -14,7 +14,7 @@ namespace ProjectMVC_FoxIT.Models
         }
         public int ProjectId { get; set; }
         public string Name { get; set; }
-        public int CustomerId { get; set; }
+        public int? CustomerId { get; set; }
         public bool? IsActive { get; set; }
         public string CreatedBy { get; set; }
         public DateTime? CreatedOn { get; set; }
