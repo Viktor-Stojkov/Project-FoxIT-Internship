@@ -8,15 +8,15 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
+    <a asp-action="Create" class="btn btn-primary shadow-lg"><i class="fas fa-plus pr-2"></i>Create New</a>
 </p>
 
 <form asp-action="Index" method="post">
     <div class="row">
-        <div class="form-group col-3">
+        <div class="form-group col-2">
             <label class="control-label">Customers</label>
             <br />
-            <input type="text" asp-for="Name" autocomplete="off" placeholder="-- Select --" list="selectListCustomersName" />
+            <input type="text" class="shadow" asp-for="Name" autocomplete="off" placeholder="-- Select --" list="selectListCustomersName" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
         <datalist id="selectListCustomersName">
@@ -26,10 +26,10 @@
             }
         </datalist>
 
-        <div class="form-group col-3">
+        <div class="form-group col-2">
             <label class="control-label">Address</label>
             <br />
-            <input type="text" asp-for="Address" autocomplete="off" placeholder="-- Select --" list="selectListCustomersAddress" />
+            <input type="text" class="shadow" asp-for="Address" autocomplete="off" placeholder="-- Select --" list="selectListCustomersAddress" />
             <span asp-validation-for="Address" class="text-danger"></span>
         </div>
         <datalist id="selectListCustomersAddress">
@@ -39,10 +39,10 @@
             }
         </datalist>
 
-        <div class="form-group col-3">
+        <div class="form-group col-2">
             <label class="control-label">Edbs</label>
             <br />
-            <input type="text" asp-for="Edb" autocomplete="off" placeholder="-- Select --" list="selectListCustomersEDB" />
+            <input type="text" class="shadow" asp-for="Edb" autocomplete="off" placeholder="-- Select --" list="selectListCustomersEDB" />
             <span asp-validation-for="Edb" class="text-danger"></span>
         </div>
         <datalist id="selectListCustomersEDB">
@@ -52,14 +52,14 @@
             }
         </datalist>
 
-        <div class="form-group col-3">
-            <input type="submit" class="btn btn-primary" value="Search" />  @*Search button*@
+        <div class="form-group col-1 pt-4">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>  @*Search button*@
         </div>
 
     </div>
 </form>
-<table class="table">
-    <thead>
+<table class="table table-striped">
+    <thead class="bg-secondary text-white">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -141,9 +141,9 @@
                     @Html.DisplayFor(modelItem => item.UpdatedOn)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.CustomerId" class="btn btn-warning">Edit</a>
-                    <a asp-action="Details" asp-route-id="@item.CustomerId" class="btn btn-info">Details</a>
-                    <a asp-action="Delete" asp-route-id="@item.CustomerId" class="btn btn-danger">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.CustomerId" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.CustomerId" class="btn btn-info btn-sm"><i class="fas fa-info"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.CustomerId" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                 </td>
             </tr>
         }

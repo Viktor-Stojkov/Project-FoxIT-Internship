@@ -27,6 +27,9 @@
           "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
+      "FontAwesome/4.7.0": {
+        "type": "package"
+      },
       "Humanizer.Core/2.8.26": {
         "type": "package",
         "compile": {
@@ -2211,6 +2214,27 @@
         "automapper.extensions.microsoft.dependencyinjection.nuspec",
         "icon.png",
         "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll"
+      ]
+    },
+    "FontAwesome/4.7.0": {
+      "sha512": "n4H/brfszElyoZ4kmGh8E75uqvLzLvFr3h2PFVdPH1LwUmWIpeqdaW2pcC4oZAhg7sESyObh0IZpAI8COCNeUg==",
+      "type": "package",
+      "path": "fontawesome/4.7.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Content/Content/font-awesome.css",
+        "Content/Content/font-awesome.min.css",
+        "Content/fonts/FontAwesome.otf",
+        "Content/fonts/fontawesome-webfont.eot",
+        "Content/fonts/fontawesome-webfont.svg",
+        "Content/fonts/fontawesome-webfont.ttf",
+        "Content/fonts/fontawesome-webfont.woff",
+        "Content/fonts/fontawesome-webfont.woff2",
+        "fontawesome.4.7.0.nupkg.sha512",
+        "fontawesome.nuspec",
+        "tools/install.ps1"
       ]
     },
     "Humanizer.Core/2.8.26": {
@@ -7554,6 +7578,7 @@
     "net5.0": [
       "AutoMapper >= 11.0.0",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 11.0.0",
+      "FontAwesome >= 4.7.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 5.0.13",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 5.0.13",
       "Microsoft.AspNetCore.Identity.UI >= 5.0.13",
@@ -7613,6 +7638,10 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
             "version": "[11.0.0, )"
+          },
+          "FontAwesome": {
+            "target": "Package",
+            "version": "[4.7.0, )"
           },
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
             "target": "Package",

@@ -155,7 +155,7 @@ namespace ProjectMVC_FoxIT.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["SelectListName"] = new SelectList(_context.Projects, "Name", "Name", project.Name);
-            ViewData["SelectListCustomerName"] = new SelectList(_context.Customers, "Name", "Name", project.Customer.Name);
+            ViewData["SelectListCustomerName"] = new SelectList(_context.Customers, "Name", "Name", project.Customer?.Name);
             return View(project);
         }
 

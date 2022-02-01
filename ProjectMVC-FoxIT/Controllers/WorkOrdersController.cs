@@ -148,8 +148,8 @@ namespace ProjectMVC_FoxIT.Controllers
 
             var workOrderUser = _context.AspNetUsers.SingleOrDefault(x => x.Id == workOrder.UserId);
 
-            ViewData["selectListCustomerName"] = new SelectList(_context.Customers, "Name", "Name", workOrder.Customer.Name);
-            ViewData["selectListProjectName"] = new SelectList(_context.Projects, "Name", "Name", workOrder.Project.Name);
+            ViewData["selectListCustomerName"] = new SelectList(_context.Customers, "Name", "Name", workOrder.Customer?.Name);
+            ViewData["selectListProjectName"] = new SelectList(_context.Projects, "Name", "Name", workOrder.Project?.Name);
             ViewData["selectListProjectUserName"] = new SelectList(_context.AspNetUsers, "UserName", "Id", workOrderUser?.UserName);
             ViewData["CustomerNote"] = new SelectList(_context.WorkOrders, "CustomerNote", "CustomerNote");
             ViewData["PerformedWorks"] = new SelectList(_context.WorkOrders, "PerformedWorks", "PerformedWorks");

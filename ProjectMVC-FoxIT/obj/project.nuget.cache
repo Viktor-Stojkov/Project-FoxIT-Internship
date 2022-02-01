@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "rFeLbspAd3CH2Tl0zcIZT6oeuRhrNxyteYqIqTb1LrFnDRJvdD7M7VZqUCQ+nTUW9Yf1R2sOm1u7LSYg70b7xQ==",
+  "dgSpecHash": "C5JH2jlzaL3YBraS8r+H6Bytdveu8e33HBo6O+9KQxqyxLIKGIN+ACWNN0SY0KEQoXXudPSRLXwy6rWzJVCz4w==",
   "success": true,
   "projectFilePath": "C:\\Users\\vices\\Desktop\\Viktor Folder\\03. FoxIT - Intership Full Stack .NET Developer\\Classes\\FoxIT - GitHub Project\\WorkOrders-V.S\\ProjectMVC-FoxIT\\ProjectMVC-FoxIT.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vices\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\vices\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "C:\\Users\\vices\\.nuget\\packages\\fontawesome\\4.7.0\\fontawesome.4.7.0.nupkg.sha512",
     "C:\\Users\\vices\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\vices\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.13\\microsoft.aspnetcore.cryptography.internal.5.0.13.nupkg.sha512",
     "C:\\Users\\vices\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.13\\microsoft.aspnetcore.cryptography.keyderivation.5.0.13.nupkg.sha512",

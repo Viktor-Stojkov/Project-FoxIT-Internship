@@ -4,73 +4,73 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>Project</h4>
+<div class="text-center">
+    <h1>Edit</h1>
+    <h4>WorkOrder</h4>
+</div>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+    <form asp-action="Edit" method="post" autocomplete="off" class="btn btn-md container shadow-lg">
+        <div class="row">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ProjectId" />
-            <div class="form-group">
+            <div class="form-group col-4">
                 <label asp-for="Name" class="control-label"></label>
-                <input type="text" asp-for="Name" autocomplete="off" placeholder="Project Name" list="SelectListName">
+                <input type="text" class="form-control shadow" asp-for="Name" autocomplete="off" placeholder="Project Name" list="SelectListName">
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <datalist id="SelectListName">
                 @foreach (var project in ViewData["SelectListName"] as SelectList)
                 {
-                    <option value="@project.Value"/>
+                    <option value="@project.Value" />
                 }
             </datalist>
-            <div class="form-group">
-                <label asp-for="Customer.Name" class="control-label"></label>
-                <input type="text" asp-for="Customer.Name" autocomplete="off" placeholder="Customer Name" list="SelectListCustomerName" />
-                <span asp-validation-for="Customer.Name" class="text-danger"></span>
+            <div class="form-group col-4">
+                <label asp-for="CustomerId" class="control-label"></label>
+                <input type="text" class="form-control shadow" asp-for="CustomerId" autocomplete="off" placeholder="Customer Name" list="SelectListCustomerName" />
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
             </div>
             <datalist id="SelectListCustomerName">
                 @foreach (var customerInProject in ViewData["SelectListCustomerName"] as SelectList)
                 {
-                    <option value="@customerInProject.Value"/>
+                    <option value="@customerInProject.Value" />
                 }
             </datalist>
-            <div class="form-group">
+            <div class="form-group col-4">
                 <label asp-for="IsActive" class="control-label"></label>
-                @Html.EditorFor(model => model.IsActive, new { @class = "form-control" })  @*bool prop IsActive now edtable*@
+                @Html.EditorFor(model => model.IsActive, new { htmlAttributes = new { @class = "form-control shadow" } })  @*bool prop IsActive now edtable*@
                 <span asp-validation-for="IsActive" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="CreatedBy" class="control-label"></label>
-                <input asp-for="CreatedBy" class="form-control" />
-                <span asp-validation-for="CreatedBy" class="text-danger"></span>
+        </div>
+        @*<div class="form-group">
+            <label asp-for="CreatedBy" class="control-label"></label>
+            <input asp-for="CreatedBy" class="form-control" />
+            <span asp-validation-for="CreatedBy" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CreatedOn" class="control-label"></label>
-                <input asp-for="CreatedOn" class="form-control" />
-                <span asp-validation-for="CreatedOn" class="text-danger"></span>
+            <label asp-for="CreatedOn" class="control-label"></label>
+            <input asp-for="CreatedOn" class="form-control" />
+            <span asp-validation-for="CreatedOn" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UpdatedBy" class="control-label"></label>
-                <input asp-for="UpdatedBy" class="form-control" />
-                <span asp-validation-for="UpdatedBy" class="text-danger"></span>
+            <label asp-for="UpdatedBy" class="control-label"></label>
+            <input asp-for="UpdatedBy" class="form-control" />
+            <span asp-validation-for="UpdatedBy" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UpdatedOn" class="control-label"></label>
-                <input asp-for="UpdatedOn" class="form-control" />
-                <span asp-validation-for="UpdatedOn" class="text-danger"></span>
+            <label asp-for="UpdatedOn" class="control-label"></label>
+            <input asp-for="UpdatedOn" class="form-control" />
+            <span asp-validation-for="UpdatedOn" class="text-danger"></span>
             </div>*@
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-success" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        <div class="form-group mt-5">
+            <a asp-action="Index" class="btn btn-md btn-secondary btn-lg float-left shadow-lg"><i class="fas fa-arrow-circle-left"></i> Back to List</a>
+            <button type="submit" value="Save" class="btn btn-success btn-lg float-right shadow-lg">Save  <i class="fas fa-save"></i></button>
+        </div>
+    </form>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }

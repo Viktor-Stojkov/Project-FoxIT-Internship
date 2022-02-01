@@ -4,94 +4,96 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<div class="text-center">
+    <h1>Details</h1>
+</div>
 
-<div>
+<div class="container">
     <h4>Customer</h4>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
+    <dl class="row shadow-lg border border-info w-50 ml-1">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-6">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Address)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-6">
             @Html.DisplayFor(model => model.Address)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.City)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-6">
             @Html.DisplayFor(model => model.City)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Phone)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-6">
             @Html.DisplayFor(model => model.Phone)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Email)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-6">
             @Html.DisplayFor(model => model.Email)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Web)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-6">
             @Html.DisplayFor(model => model.Web)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Edb)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-6">
             @Html.DisplayFor(model => model.Edb)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.IsActive)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-6">
             @Html.DisplayFor(model => model.IsActive)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.CreatedBy)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-6">
             @Html.DisplayFor(model => model.CreatedBy)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.CreatedOn)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-6">
             @Html.DisplayFor(model => model.CreatedOn)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.UpdatedBy)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-6">
             @Html.DisplayFor(model => model.UpdatedBy)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.UpdatedOn)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-6">
             @Html.DisplayFor(model => model.UpdatedOn)
         </dd>
         @if (Model.IsActive.HasValue && !Model.IsActive.Value)
         {
             <br/>
-            <dd class="col-sm-10">
-                <a asp-action="Delete" asp-route-id="@Model.CustomerId" class="btn btn-md btn-danger">Delete</a>  @*Created delete button if IsActive now is False*@
+            <dd class="col-sm-12">
+                <a asp-action="Delete" asp-route-id="@Model.CustomerId" class="btn btn-md btn-danger my-3"><i class="fas fa-trash"></i> Delete</a>  @*Created delete button if IsActive now is False*@
             </dd>
         }
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.CustomerId" class="btn btn-md btn-warning">Edit</a> |
-    <a asp-action="Index" class="btn btn-md btn-secondary">Back to List</a>
+    <div class="form-group mt-5 w-50">
+        <a asp-action="Index" class="btn btn-secondary float-left shadow-lg"><i class="fas fa-arrow-circle-left"></i> Back to List</a>  
+        <a asp-action="Edit" asp-route-id="@Model.CustomerId" class="btn btn-warning float-right shadow-lg mr-n2">Edit  <i class="fas fa-user-edit"></i></a>
+    </div>
 </div>

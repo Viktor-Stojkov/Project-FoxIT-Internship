@@ -13,7 +13,7 @@ namespace ProjectMVC_FoxIT.Models
             WorkOrders = new HashSet<WorkOrder>();
         }
         public int ProjectId { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public int? CustomerId { get; set; }
         public bool? IsActive { get; set; }
         public string CreatedBy { get; set; }

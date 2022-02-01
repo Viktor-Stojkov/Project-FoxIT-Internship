@@ -3,19 +3,19 @@
 @{
     ViewData["Title"] = "Edit";
 }
-
-<h1>Edit</h1>
-
-<h4>WorkOrder</h4>
+<div class="text-center">
+    <h1>Edit</h1>
+    <h4>WorkOrder</h4>
+</div>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+    <form asp-action="Edit" method="post" autocomplete="off" class="btn btn-md container shadow-lg">
+        <div class="row">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="WorkOrderId" />
-            <div class="form-group">
+            <div class="form-group col-4">
                 <label asp-for="Customer.Name" class="control-label"></label>
-                <input type="text" asp-for="Customer.Name" autocomplete="off" placeholder="Customer Name" list="selectListCustomerName" />
+                <input type="text" class="form-control shadow" asp-for="Customer.Name" autocomplete="off" placeholder="Customer Name" list="selectListCustomerName" />
                 <span asp-validation-for="Customer.Name" class="text-danger"></span>
             </div>
             <datalist id="selectListCustomerName">
@@ -24,9 +24,9 @@
                     <option value="@workOrderInCustomer.Value" />
                 }
             </datalist>
-            <div class="form-group">
+            <div class="form-group col-4">
                 <label asp-for="Project.Name" class="control-label"></label>
-                <input type="text" asp-for="Project.Name" autocomplete="off" placeholder="Project Name" list="selectListProjectName" />
+                <input type="text" class="form-control shadow" asp-for="Project.Name" autocomplete="off" placeholder="Project Name" list="selectListProjectName" />
                 <span asp-validation-for="Project.Name" class="text-danger"></span>
             </div>
             <datalist id="selectListProjectName">
@@ -35,9 +35,9 @@
                     <option value="@workOrderInProject.Value" />
                 }
             </datalist>
-            <div class="form-group">
+            <div class="form-group col-4">
                 <label asp-for="UserId" class="control-label"></label>
-                <input type="text" asp-for="UserId" autocomplete="off" placeholder="Project Name" list="selectListProjectUserName" />
+                <input type="text" class="form-control shadow" asp-for="UserId" autocomplete="off" placeholder="Project Name" list="selectListProjectUserName" />
                 <span asp-validation-for="UserId" class="text-danger"></span>
             </div>
             <datalist id="selectListProjectUserName">
@@ -46,67 +46,72 @@
                     <option value="@workOrderInAspNetUser.Value" />
                 }
             </datalist>
-            <div class="form-group">
+        </div>
+        <div class="row">
+            <div class="form-group col-4">
                 <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
+                <input asp-for="Date" class="form-control shadow" class="form-control" />
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-4">
                 <label asp-for="CustomerNote" class="control-label"></label>
-                <select asp-for="CustomerNote" class="form-control" asp-items="ViewBag.CustomerNote"></select>
+                <select asp-for="CustomerNote" class="form-control shadow" class="form-control" asp-items="ViewBag.CustomerNote"></select>
                 <span asp-validation-for="CustomerNote" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-4">
                 <label asp-for="PerformedWorks" class="control-label"></label>
-                <select asp-for="PerformedWorks" class="form-control" asp-items="ViewBag.PerformedWorks"></select>
+                <select asp-for="PerformedWorks" class="form-control shadow" class="form-control" asp-items="ViewBag.PerformedWorks"></select>
                 <span asp-validation-for="PerformedWorks" class="text-danger"></span>
             </div>
-            <div class="form-group">
+        </div>
+        <div class="row">
+            <div class="form-group col-4">
                 <label asp-for="Hours" class="control-label"></label>
-                <input asp-for="Hours" class="form-control" />
+                <input asp-for="Hours" class="form-control shadow" class="form-control" />
                 <span asp-validation-for="Hours" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-4">
                 <label asp-for="Minutes" class="control-label"></label>
-                <input asp-for="Minutes" class="form-control" />
+                <input asp-for="Minutes" class="form-control shadow" class="form-control" />
                 <span asp-validation-for="Minutes" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-4">
                 <label asp-for="IsActive" class="control-label"></label>
-                @Html.EditorFor(model => model.IsActive, new { @class = "form-control" })  @*bool prop IsActive now edtable*@
+                @Html.EditorFor(model => model.IsActive, new { htmlAttributes = new { @class = "form-control shadow" } })  @*bool prop IsActive now edtable*@
                 <span asp-validation-for="IsActive" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="CreatedBy" class="control-label"></label>
-                <input asp-for="CreatedBy" class="form-control" />
-                <span asp-validation-for="CreatedBy" class="text-danger"></span>
+        </div>
+        @*<div class="form-group">
+            <label asp-for="CreatedBy" class="control-label"></label>
+            <input asp-for="CreatedBy" class="form-control" />
+            <span asp-validation-for="CreatedBy" class="text-danger"></span>
             </div>*@
-            <div class="form-group">
+        <div class="row">
+            <div class="form-group col-4">
                 <label asp-for="CreatedOn" class="control-label"></label>
-                <select asp-for="CreatedOn" class="form-control" asp-items="ViewBag.CreatedOn"></select>
+                <select asp-for="CreatedOn" class="form-control shadow" class="form-control" asp-items="ViewBag.CreatedOn"></select>
                 <span asp-validation-for="CreatedOn" class="text-danger"></span>
             </div>
             @*<div class="form-group">
                 <label asp-for="UpdatedBy" class="control-label"></label>
                 <input asp-for="UpdatedBy" class="form-control" />
                 <span asp-validation-for="UpdatedBy" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
+                </div>*@
+            <div class="form-group col-4">
                 <label asp-for="UpdatedOn" class="control-label"></label>
-                <select asp-for="UpdatedOn" class="form-control" asp-items="ViewBag.UpdatedOn"></select>
+                <select asp-for="UpdatedOn" class="form-control shadow" class="form-control" asp-items="ViewBag.UpdatedOn"></select>
                 <span asp-validation-for="UpdatedOn" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-success" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+        <div class="form-group mt-5">
+            <a asp-action="Index" class="btn btn-md btn-secondary btn-lg float-left shadow-lg"><i class="fas fa-arrow-circle-left"></i> Back to List</a>
+            <button type="submit" value="Save" class="btn btn-success btn-lg float-right shadow-lg">Save  <i class="fas fa-save"></i></button>
+        </div>
+    </form>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
 }
