@@ -11,7 +11,7 @@
 <div class="container">
     <h4>Customer</h4>
     <hr />
-    <dl class="row shadow-lg border border-info w-50 ml-1">
+    <dl class="row shadow-lg border border-info ml-1">
         <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
@@ -92,8 +92,8 @@
             </dd>
         }
     </dl>
-    <div class="form-group mt-5 w-50">
+    <div class="form-group mt-5">
         <a asp-action="Index" class="btn btn-secondary float-left shadow-lg"><i class="fas fa-arrow-circle-left"></i> Back to List</a>  
-        <a asp-action="Edit" asp-route-id="@Model.CustomerId" class="btn btn-warning float-right shadow-lg mr-n2">Edit  <i class="fas fa-user-edit"></i></a>
+        <a asp-action="Edit" asp-route-id="@Model.CustomerId" class="btn btn-secondary float-right shadow-lg mr-n4">Edit  <i class="fas fa-user-edit"></i></a>
     </div>
 </div>

@@ -13,7 +13,7 @@
 
 <form asp-action="Index" method="post">
     <div class="row">
-        <div class="form-group col-2">
+        <div class="form-group col-lg-2 col-md-4 col-12">
             <label class="control-label">Customers</label>
             <br />
             <input type="text" class="shadow" asp-for="Customer.Name" autocomplete="off" placeholder="-- Select --" list="selectListCustomersName" />
@@ -26,7 +26,7 @@
             }
         </datalist>
 
-        <div class="form-group col-2">
+        <div class="form-group col-lg-2 col-md-4 col-12">
             <label class="control-label">Projects</label>
             <br />
             <input type="text" class="shadow" asp-for="Project.Name" autocomplete="off" placeholder="-- Select --" list="selectListProjectsName" />
@@ -39,7 +39,7 @@
             }
         </datalist>
 
-        <div class="form-group col-2">
+        <div class="form-group col-lg-2 col-md-4 col-12">
             <label class="control-label">Users</label>
             <br />
             <input asp-for="UserId" class="shadow" autocomplete="off" placeholder="-- Select --" list="selectListUsersName" />
@@ -52,7 +52,7 @@
             }
         </datalist>
 
-        <div class="form-group col-2">
+        <div class="form-group col-lg-2 col-md-4 col-12">
             <label class="control-label">Customer Note</label>
             <br />
             <input asp-for="CustomerNote" class="shadow" autocomplete="off" placeholder="-- Select --" list="selectListCustomerName" />
@@ -65,7 +65,7 @@
             }
         </datalist>
 
-        <div class="form-group col-2">
+        <div class="form-group col-lg-2 col-md-4 col-12">
             <label class="control-label">Performed Works</label>
             <br />
             <input asp-for="PerformedWorks" class="shadow" autocomplete="off" placeholder="-- Select --" list="selectListPerformedName" />
@@ -136,7 +136,8 @@
                     @Html.DisplayFor(modelItem => item.UserId)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Date)
+                    @Convert.ToString(string.Format("{0:dd.MM.yyyy}", item.Date))
+                    @*@Html.DisplayFor(modelItem => item.Date.Value.ToString(@"dd.MM.yyyy"))*@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CustomerNote)
@@ -172,9 +173,9 @@
                     @Html.DisplayFor(modelItem => item.Project.ProjectId)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.WorkOrderId" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-                    <a asp-action="Details" asp-route-id="@item.WorkOrderId" class="btn btn-info btn-sm"><i class="fas fa-info"></i></a>
-                    <a asp-action="Delete" asp-route-id="@item.WorkOrderId" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                    <a asp-action="Edit" asp-route-id="@item.WorkOrderId" class="btn btn-secondary btn-sm"><i class="fas fa-edit"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.WorkOrderId" class="btn btn-secondary btn-sm"><i class="fas fa-info"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.WorkOrderId" class="btn btn-secondary btn-sm"><i class="fas fa-trash"></i></a>
                 </td>
             </tr>
         }
