@@ -61,10 +61,12 @@ namespace ProjectMVC_FoxIT.Controllers
             catch (Exception ex)
             {
                 ModelState.AddModelError("Error", ex.Message.ToString() + "\n ex:" + ex);
+                return View(model);
+
             }
             return RedirectToAction("Index", "WorkOrders");
-            
-            
+
+
         }
 
 

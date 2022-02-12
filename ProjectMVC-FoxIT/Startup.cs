@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ProjectMVC_FoxIT.Mappers;
+using ProjectMVC_FoxIT.Models;
 
 namespace ProjectMVC_FoxIT
 {
@@ -32,15 +33,24 @@ namespace ProjectMVC_FoxIT
             services.AddDbContext<WorkOrdersContext>(options =>  // Changed AplicationDbContext to WorkOrdersContext to access route
                 options.UseSqlServer(
                     Configuration.GetConnectionString("WorkOrdersConnection"))); // I created new Connection to the local machine
+
+            services.AddDbContext<ApplicationDbContext>(options =>  // Changed AplicationDbContext to WorkOrdersContext to access route
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("WorkOrdersConnection")));
+
+
             services.AddDatabaseDeveloperPageExceptionFilter();
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<WorkOrdersContext>();  // Changed AplicationDbContext
-            //services.AddAutoMapper(typeof(Startup));
+                .AddEntityFrameworkStores<ApplicationDbContext>();  // Changed AplicationDbContext
+
+            services.AddAutoMapper(typeof(Startup));
             var mapperConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());
              });
+
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
             /* https://stackoverflow.com/questions/40275195/how-to-set-up-automapper-in-asp-net-core */
