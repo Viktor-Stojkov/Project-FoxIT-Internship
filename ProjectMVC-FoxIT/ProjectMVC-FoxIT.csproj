@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <UserSecretsId>aspnet-ProjectMVC_FoxIT-4DD1435D-A004-448E-92C4-143703950630</UserSecretsId>
     <RootNamespace>ProjectMVC_FoxIT</RootNamespace>
   </PropertyGroup>

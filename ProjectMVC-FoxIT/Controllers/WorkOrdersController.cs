@@ -54,7 +54,7 @@ namespace ProjectMVC_FoxIT.Controllers
             List<WorkOrdersViewModel> workOrdersViewList = _mapper.Map<List<WorkOrder>, List<WorkOrdersViewModel>>(workOrdersContext); // Mapped List in WorkOrdersViewModel from WorkOrder
             model.WorkOrders = workOrdersViewList;
 
-            model.Customers = new SelectList(_context.Customers, "Name", "Name");
+            model.Customers = new SelectList(_context.Customers, "CustomerId", "Name");
             model.Projects = new SelectList(_context.Projects, "Name", "Name");
             model.Users = new SelectList(_context.WorkOrders.Select(x => new SelectListItem()
             {

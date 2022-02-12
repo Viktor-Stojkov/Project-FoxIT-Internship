@@ -31,9 +31,10 @@ namespace ProjectMVC_FoxIT
         {
             services.AddDbContext<WorkOrdersContext>(options =>  // Changed AplicationDbContext to WorkOrdersContext to access route
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("WorkOrdersConnection"))); // I created new Connection with to local machine
+                    Configuration.GetConnectionString("WorkOrdersConnection"))); // I created new Connection to the local machine
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<WorkOrdersContext>();  // Changed AplicationDbContext
             //services.AddAutoMapper(typeof(Startup));
             var mapperConfig = new MapperConfiguration(mc =>
