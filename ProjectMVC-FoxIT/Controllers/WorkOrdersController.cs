@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using ProjectMVC_FoxIT.Models.VIewModel;
 
 namespace ProjectMVC_FoxIT.Controllers
 {
+    [Authorize]
     public class WorkOrdersController : Controller
     {
         private readonly WorkOrdersContext _context;

@@ -143,3 +143,5 @@ C:\Users\vices\Desktop\Viktor Folder\03. FoxIT - Intership Full Stack .NET Devel
 C:\Users\vices\Desktop\Viktor Folder\03. FoxIT - Intership Full Stack .NET Developer\Classes\FoxIT - GitHub Project\WorkOrders-V.S\ProjectMVC-FoxIT\obj\Debug\net6.0\ProjectMVC-FoxIT.pdb
 C:\Users\vices\Desktop\Viktor Folder\03. FoxIT - Intership Full Stack .NET Developer\Classes\FoxIT - GitHub Project\WorkOrders-V.S\ProjectMVC-FoxIT\obj\Debug\net6.0\ProjectMVC-FoxIT.genruntimeconfig.cache
 C:\Users\vices\Desktop\Viktor Folder\03. FoxIT - Intership Full Stack .NET Developer\Classes\FoxIT - GitHub Project\WorkOrders-V.S\ProjectMVC-FoxIT\obj\Debug\net6.0\ProjectMVC-FoxIT.csproj.AssemblyReference.cache
+C:\Users\vices\Desktop\Viktor Folder\03. FoxIT - Intership Full Stack .NET Developer\Classes\FoxIT - GitHub Project\WorkOrders-V.S\ProjectMVC-FoxIT\bin\Debug\net6.0\Elasticsearch.Net.dll
+C:\Users\vices\Desktop\Viktor Folder\03. FoxIT - Intership Full Stack .NET Developer\Classes\FoxIT - GitHub Project\WorkOrders-V.S\ProjectMVC-FoxIT\bin\Debug\net6.0\Nest.dll

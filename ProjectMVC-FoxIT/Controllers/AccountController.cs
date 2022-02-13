@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ProjectMVC_FoxIT.Data;
 using ProjectMVC_FoxIT.Models.LoginAndRegister;
 using System;
@@ -14,13 +17,15 @@ namespace ProjectMVC_FoxIT.Controllers
         private SignInManager<IdentityUser> _signInManager;
         private WorkOrdersContext _context;
         private RoleManager<IdentityRole> _roleManager;
+        private IMapper _mapper;
 
-        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, WorkOrdersContext context, RoleManager<IdentityRole> roleManager)
+        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, WorkOrdersContext context, RoleManager<IdentityRole> roleManager, IMapper mapper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
             _roleManager = roleManager;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -73,18 +78,56 @@ namespace ProjectMVC_FoxIT.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            Register register = new Register();
-
-            var userRoles = _context.AspNetRoles.Select(x => x.Name).ToList();
+            Register model = new Register();
             var userRolesToList = _roleManager.Roles.ToList();
+            model.Roles = new SelectList(userRolesToList, "Name", "Name");
 
-            return View();
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult Register(Register model)
+        public async Task<ActionResult> Register(Register model)
         {
-            return View(model);
+            try
+            {
+                var userRolesToList = _roleManager.Roles.ToList();
+                model.Roles = new SelectList(userRolesToList, "Name", "Name");
+
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+
+                var email = _context.AspNetUsers.FirstOrDefault(x => x.Email == model.Email);
+                if (email != null)
+                {
+                    ModelState.AddModelError("Error", "Побараната Е-маил адреса е веќе искористена, ве молиме внесете друга Е-маил адреса!");
+                    return View(model);
+                }
+                IdentityUser user = new IdentityUser()
+                {
+                    Email = model.Email,
+                    UserName = model.Email
+                };
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (!result.Succeeded)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.TryAddModelError(error.Code, error.Description);
+                    }
+                    return View(model);
+                }
+                await _userManager.AddToRoleAsync(user, model.Role);
+
+                return RedirectToAction("Login", "Account");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("Error", ex.Message.ToString() + "\n ex:" + ex);
+                return View(model);
+            }
+
         }
     }
 }

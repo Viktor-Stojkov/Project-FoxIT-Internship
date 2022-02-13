@@ -83,7 +83,7 @@ namespace ProjectMVC_FoxIT
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=WorkOrders}/{action=Index}/{id?}");
+                    pattern: "{controller=Account}/{action=Login}");
                 endpoints.MapRazorPages();
             });
         }
