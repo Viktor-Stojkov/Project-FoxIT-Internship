@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KH5zj6QV/Yg6vIMQ3yt9av04GfXjVvj0uRn3vUvmhiin+Lyunf4RwnxmGH2iU8Pykv1quZizfPFgyO6yEXXfMQ==",
+  "dgSpecHash": "qSQrboFnL/T48p8JvUKHzAGqLGvvYsphzmulJy3GoajsBiMBWtdC5/GLtdip0Vcr/ZAFX/iWrX36jGBJ5S+k0Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\vices\\Desktop\\Viktor Folder\\03. FoxIT - Intership Full Stack .NET Developer\\Classes\\FoxIT - GitHub Project\\WorkOrders-V.S\\ProjectMVC-FoxIT\\ProjectMVC-FoxIT.csproj",
   "expectedPackageFiles": [
@@ -68,6 +68,7 @@
     "C:\\Users\\vices\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\vices\\.nuget\\packages\\nest\\7.17.0\\nest.7.17.0.nupkg.sha512",
     "C:\\Users\\vices\\.nuget\\packages\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\vices\\.nuget\\packages\\postal.aspnetcore\\2.6.0\\postal.aspnetcore.2.6.0.nupkg.sha512",
     "C:\\Users\\vices\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\vices\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\vices\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

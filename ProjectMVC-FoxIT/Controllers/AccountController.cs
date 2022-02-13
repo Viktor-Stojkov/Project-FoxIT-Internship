@@ -3,11 +3,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Postal;
 using ProjectMVC_FoxIT.Data;
 using ProjectMVC_FoxIT.Models.LoginAndRegister;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using WorkOrders.Shared;
 
 namespace ProjectMVC_FoxIT.Controllers
 {
@@ -17,15 +20,15 @@ namespace ProjectMVC_FoxIT.Controllers
         private SignInManager<IdentityUser> _signInManager;
         private WorkOrdersContext _context;
         private RoleManager<IdentityRole> _roleManager;
-        private IMapper _mapper;
+        private IEmailSenderEnhance _emailSenderEnhance;
 
-        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, WorkOrdersContext context, RoleManager<IdentityRole> roleManager, IMapper mapper)
+        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, WorkOrdersContext context, RoleManager<IdentityRole> roleManager, IEmailSenderEnhance emailSenderEnhance)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
             _roleManager = roleManager;
-            _mapper = mapper;
+            _emailSenderEnhance = emailSenderEnhance;
         }
 
         [HttpGet]
@@ -120,6 +123,18 @@ namespace ProjectMVC_FoxIT.Controllers
                 }
                 await _userManager.AddToRoleAsync(user, model.Role);
 
+                var emailData = new Email("ActivateAccount");
+                emailData.RequestPath = Shared.PostalRequest(this.Request);
+
+                emailData.ViewData["To"] = model.Email;
+                emailData.ViewData["Username"] = model.Email;
+                emailData.ViewData["Password"] = model.Password;
+            
+                ViewBag.Callback = Url.Action("EmailConfirmed", "Account", user.Id);
+
+                await _emailSenderEnhance.SendEmailAsync(emailData);
+
+
                 return RedirectToAction("Login", "Account");
             }
             catch (Exception ex)
@@ -128,6 +143,23 @@ namespace ProjectMVC_FoxIT.Controllers
                 return View(model);
             }
 
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EmailConfirmed(string userId)
+        {
+            var user = await _context.AspNetUsers.SingleOrDefaultAsync(x => x.Id == userId);
+            if (user != null)
+            {
+                user.EmailConfirmed = true;
+                _context.SaveChanges();
+            }
+            else
+            {
+                ModelState.AddModelError("Error", "Неуспешна Регистрација, контактирајте ги нашите администратори");
+
+            }
+            return View();
         }
     }
 }

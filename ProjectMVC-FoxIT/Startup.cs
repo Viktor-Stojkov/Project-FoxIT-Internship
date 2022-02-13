@@ -15,6 +15,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using ProjectMVC_FoxIT.Mappers;
 using ProjectMVC_FoxIT.Models;
+using WorkOrders.Shared;
+using Postal.AspNetCore;
 
 namespace ProjectMVC_FoxIT
 {
@@ -37,6 +39,11 @@ namespace ProjectMVC_FoxIT
             services.AddDbContext<ApplicationDbContext>(options =>  // Changed AplicationDbContext to WorkOrdersContext to access route
                 options.UseSqlServer(
                     Configuration.GetConnectionString("WorkOrdersConnection")));
+
+            services.Configure<EmailSenderOptions>(Configuration.GetSection("EmailConfiguration"));  // Email
+            services.AddPostal();
+            services.AddTransient<IEmailSenderEnhance, EmailSender>();
+
 
 
             services.AddDatabaseDeveloperPageExceptionFilter();

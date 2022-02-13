@@ -17,7 +17,8 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.12",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.12",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "5.0.2",
-          "NEST": "7.17.0"
+          "NEST": "7.17.0",
+          "Postal.AspNetCore": "2.6.0"
         },
         "runtime": {
           "ProjectMVC-FoxIT.dll": {}
@@ -825,6 +826,14 @@
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
             "assemblyVersion": "11.0.0.0",
             "fileVersion": "11.0.2.21924"
+          }
+        }
+      },
+      "Postal.AspNetCore/2.6.0": {
+        "runtime": {
+          "lib/netcoreapp3.1/Postal.AspNetCore.dll": {
+            "assemblyVersion": "2.6.0.0",
+            "fileVersion": "2.6.0.0"
           }
         }
       },
@@ -2014,6 +2023,13 @@
       "sha512": "sha512-IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
       "path": "newtonsoft.json/11.0.2",
       "hashPath": "newtonsoft.json.11.0.2.nupkg.sha512"
+    },
+    "Postal.AspNetCore/2.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-KetShrARekN8pMBUfSe3relFGVf3E3/QGPcBdK6JhXLsCtRH19emxrIn5XArxeTekuQOkNjRFi9+M8adMz4ToQ==",
+      "path": "postal.aspnetcore/2.6.0",
+      "hashPath": "postal.aspnetcore.2.6.0.nupkg.sha512"
     },
     "runtime.native.System/4.3.0": {
       "type": "package",

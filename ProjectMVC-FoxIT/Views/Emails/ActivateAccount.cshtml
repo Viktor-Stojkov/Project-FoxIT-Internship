@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "_EmailLayout";
+    ViewBag.Title = "";
+}
+
+@section EmailHeader{Subject: Активирање на профил}
+
+<p>Почитувани,</p>
+
+
+<p>
+    Отворен нов кориснички профил со кредентициали:
+</p>
+<p>
+    Username: @ViewBag.Username
+</p>
+<p>
+    Password: @ViewBag.Password
+</p>
+<p>
+    Со почит, WorkOrders
+</p>
+
+<p>
+    Ве молиме да кликнете на линкот за да ја потврдите регистрацијата: <a href="@ViewBag.Callback">линк</a>
+</p>
+

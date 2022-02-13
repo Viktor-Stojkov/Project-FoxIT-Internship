@@ -81,6 +81,10 @@
             "NEST": {
               "target": "Package",
               "version": "[7.17.0, )"
+            },
+            "Postal.AspNetCore": {
+              "target": "Package",
+              "version": "[2.6.0, )"
             }
           },
           "imports": [
